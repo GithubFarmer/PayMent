@@ -1,0 +1,25 @@
+//
+//  PrefixHeader.pch
+//  PayTest
+//
+//  Created by 张炯 on 17/5/11.
+//  Copyright © 2017年 张炯. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+
+
+#endif /* PrefixHeader_pch */
+
+
+#ifdef __OBJC__
+
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "SAPlatformPayManager.h"
+
+
+#endif
