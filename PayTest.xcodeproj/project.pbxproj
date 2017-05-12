@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB412C7E1EC5AC0900B69ADF /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB412C7A1EC5AC0900B69ADF /* libWeChatSDK.a */; };
 		AB8442381EC3F9B200535669 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8442371EC3F9B200535669 /* main.m */; };
 		AB84423B1EC3F9B200535669 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB84423A1EC3F9B200535669 /* AppDelegate.m */; };
 		AB84423E1EC3F9B200535669 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB84423D1EC3F9B200535669 /* ViewController.m */; };
@@ -57,6 +58,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB412C7A1EC5AC0900B69ADF /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		AB412C7B1EC5AC0900B69ADF /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		AB412C7C1EC5AC0900B69ADF /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		AB412C7D1EC5AC0900B69ADF /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		AB8442331EC3F9B200535669 /* PayTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PayTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8442371EC3F9B200535669 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AB8442391EC3F9B200535669 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -200,6 +205,7 @@
 				AB8443341EC43D0100535669 /* libcrypto.a in Frameworks */,
 				AB8443331EC43D0100535669 /* AlipaySDK.framework in Frameworks */,
 				AB8443351EC43D0100535669 /* libssl.a in Frameworks */,
+				AB412C7E1EC5AC0900B69ADF /* libWeChatSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +226,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB412C791EC5AC0900B69ADF /* WeiXinPaySDK */ = {
+			isa = PBXGroup;
+			children = (
+				AB412C7A1EC5AC0900B69ADF /* libWeChatSDK.a */,
+				AB412C7B1EC5AC0900B69ADF /* WechatAuthSDK.h */,
+				AB412C7C1EC5AC0900B69ADF /* WXApi.h */,
+				AB412C7D1EC5AC0900B69ADF /* WXApiObject.h */,
+			);
+			path = WeiXinPaySDK;
+			sourceTree = "<group>";
+		};
 		AB84422A1EC3F9B200535669 = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +261,7 @@
 		AB8442351EC3F9B200535669 /* PayTest */ = {
 			isa = PBXGroup;
 			children = (
+				AB412C791EC5AC0900B69ADF /* WeiXinPaySDK */,
 				AB8442D31EC43D0100535669 /* AlipaySDK */,
 				AB8442391EC3F9B200535669 /* AppDelegate.h */,
 				AB84423A1EC3F9B200535669 /* AppDelegate.m */,
@@ -732,6 +750,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/PayTest",
 					"$(PROJECT_DIR)/PayTest/AlipaySDK",
+					"$(PROJECT_DIR)/PayTest/WeiXinPaySDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhangjiong.PayTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -759,6 +778,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/PayTest",
 					"$(PROJECT_DIR)/PayTest/AlipaySDK",
+					"$(PROJECT_DIR)/PayTest/WeiXinPaySDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhangjiong.PayTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";

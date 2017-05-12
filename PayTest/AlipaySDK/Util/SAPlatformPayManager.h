@@ -8,22 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import <AlipaySDK/AlipaySDK.h>
+#import "WXApi.h"
 
-
-typedef void(^SAPayManagerResponeBlock)(NSInteger responeCode, NSString *responeMsg);
+typedef void(^SAPayManagerResponseBlock)(NSInteger responseCode, NSString *responseMsg);
 
 @interface SAPlatformPayManager : NSObject
 
 
 /**
  
- 向服务端请求加签 请求参数
- 
  重要说明
  privateKey等数据严禁放在客户端，加签过程务必要放在服务端完成；
  防止商户私密数据泄露，造成不必要的资金损失，及面临各种安全风险；
+ 
  */
-@property (nonatomic, copy) NSString *orderId;
+
 
 
 /**
@@ -37,12 +36,12 @@ typedef void(^SAPayManagerResponeBlock)(NSInteger responeCode, NSString *respone
 
 
 
-//***************支付宝*****************//
+/***************支付宝*****************/
 
 /*
  支付宝支付结果回调
  */
-@property (nonatomic, strong)SAPayManagerResponeBlock alipayResponeBlock;
+@property (nonatomic, strong)SAPayManagerResponseBlock alipayResponseBlock;
 
 /*
  处理支付宝通过URL启动App时传递回来的数据
@@ -54,7 +53,13 @@ typedef void(^SAPayManagerResponeBlock)(NSInteger responeCode, NSString *respone
  */
 - (void)aliPayOrder:(NSString *)order
              scheme:(NSString *)scheme
-          responeBlock:(SAPayManagerResponeBlock)block;
+          responseBlock:(SAPayManagerResponseBlock)block;
+
+
+
+
+/***************微信*******************/
+
 
 
 

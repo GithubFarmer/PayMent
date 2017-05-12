@@ -19,6 +19,8 @@
     return payManager;
 }
 
+
+
 #pragma mark -------
 #pragma mark -------  支付宝支付
 
@@ -32,30 +34,30 @@
         
         if(code.integerValue==9000)
         {
-            if(manager.alipayResponeBlock)
+            if(manager.alipayResponseBlock)
             {
-                manager.alipayResponeBlock(0, @"支付成功");
+                manager.alipayResponseBlock(0, @"支付成功");
             }
         }
         else if(code.integerValue==4000 || code.integerValue==6002)
         {
-            if(manager.alipayResponeBlock)
+            if(manager.alipayResponseBlock)
             {
-                manager.alipayResponeBlock(-1, @"支付失败");
+                manager.alipayResponseBlock(-1, @"支付失败");
             }
         }
         else if(code.integerValue==6001)
         {
-            if(manager.alipayResponeBlock)
+            if(manager.alipayResponseBlock)
             {
-                manager.alipayResponeBlock(-2, @"支付取消");
+                manager.alipayResponseBlock(-2, @"支付取消");
             }
         }
         else
         {
-            if(manager.alipayResponeBlock)
+            if(manager.alipayResponseBlock)
             {
-                manager.alipayResponeBlock(-99, @"未知错误");
+                manager.alipayResponseBlock(-99, @"未知错误");
             }
         }
         
@@ -85,9 +87,9 @@
 
 - (void)aliPayOrder:(NSString *)order
              scheme:(NSString *)scheme
-       responeBlock:(SAPayManagerResponeBlock)block {
+       responseBlock:(SAPayManagerResponseBlock)block {
     
-    self.alipayResponeBlock = block;
+    self.alipayResponseBlock = block;
     
     __weak typeof(self) weakSelf = self;
     [[AlipaySDK defaultService] payOrder:order fromScheme:scheme callback:^(NSDictionary *resultDic) {
@@ -97,36 +99,131 @@
         //回调code
         if(code.integerValue==9000)
         {
-            if(weakSelf.alipayResponeBlock)
+            if(weakSelf.alipayResponseBlock)
             {
-                weakSelf.alipayResponeBlock(0, @"支付成功");
+                weakSelf.alipayResponseBlock(0, @"支付成功");
             }
         }
         else if(code.integerValue==4000 || code.integerValue==6002)
         {
-            if(weakSelf.alipayResponeBlock)
+            if(weakSelf.alipayResponseBlock)
             {
-                weakSelf.alipayResponeBlock(-1, @"支付失败");
+                weakSelf.alipayResponseBlock(-1, @"支付失败");
             }
         }
         else if(code.integerValue==6001)
         {
-            if(weakSelf.alipayResponeBlock)
+            if(weakSelf.alipayResponseBlock)
             {
-                weakSelf.alipayResponeBlock(-2, @"支付取消");
+                weakSelf.alipayResponseBlock(-2, @"支付取消");
             }
         }
         else
         {
-            if(weakSelf.alipayResponeBlock)
+            if(weakSelf.alipayResponseBlock)
             {
-                weakSelf.alipayResponeBlock(-99, @"未知错误");
+                weakSelf.alipayResponseBlock(-99, @"未知错误");
             }
         }
         
     }];
     
-    
 }
+
+
+
+
+#pragma mark -------
+#pragma mark -------  微信支付
+
++ (BOOL)isWXAppInstalled
+{
+    return [WXApi isWXAppInstalled];
+}
++ (BOOL)wechatRegisterAppWithAppId:(NSString *)appId description:(NSString *)description;
+{
+    return [WXApi registerApp:appId withDescription:description];
+}
++ (BOOL)wechatHandleOpenURL:(NSURL *)url
+{
+    return [WXApi handleOpenURL:url delegate:[SAPlatformPayManager sharePayManager]];
+}
+- (void)weixinPayWithAppId:(NSString *)appId partnerId:(NSString *)partnerId prepayId:(NSString *)prepayId package:(NSString *)package nonceStr:(NSString *)nonceStr timeStamp:(NSString *)timeStamp sign:(NSString *)sign respBlock:(SAPayManagerResponseBlock)block
+{     
+    self.wechatRespBlock = block;
+    
+    if([WXApi isWXAppInstalled])
+    {
+        PayReq *req = [[PayReq alloc] init];
+        req.openID = appId;
+        req.partnerId = partnerId;
+        req.prepayId = prepayId;
+        req.package = package;
+        req.nonceStr = nonceStr;
+        req.timeStamp = (UInt32)timeStamp.integerValue;
+        req.sign = sign;
+        [WXApi sendReq:req];
+    }
+    else
+    {
+        if(self.wechatRespBlock)
+        {
+            self.wechatRespBlock(-3, @"未安装微信");
+        }
+    }
+}
+
+#pragma mark - WXApiDelegate
+- (void)onResp:(BaseResp*)resp
+{
+    if([resp isKindOfClass:[PayResp class]])
+    {
+        switch (resp.errCode)
+        {
+            case 0:
+            {
+                if(self.wechatRespBlock)
+                {
+                    self.wechatRespBlock(0, @"支付成功");
+                }
+                
+                NSLog(@"支付成功");
+                break;
+            }
+            case -1:
+            {
+                if(self.wechatRespBlock)
+                {
+                    self.wechatRespBlock(-1, @"支付失败");
+                }
+                
+                NSLog(@"支付失败");
+                break;
+            }
+            case -2:
+            {
+                if(self.wechatRespBlock)
+                {
+                    self.wechatRespBlock(-2, @"支付取消");
+                }
+                
+                NSLog(@"支付取消");
+                break;
+            }
+                
+            default:
+            {
+                if(self.wechatRespBlock)
+                {
+                    self.wechatRespBlock(-99, @"未知错误");
+                }
+            }
+                break;
+        }
+    }
+}
+
+
+
 
 @end
