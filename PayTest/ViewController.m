@@ -39,6 +39,11 @@
 
 - (IBAction)WeChatPayButtonAction:(id)sender {
     
+    //向服务端发起请求进行成成订单信息、签名 等   
+    
+    [[SAPlatformPayManager sharePayManager] WXPayWithAppId:@"wxb4ba3c02aa476ea1" partnerId:@"10000100" prepayId:@"1101000000140415649af9fc314aa427" package:@"Sign=WXPay" nonceStr:@"a462b76e7436e98e0ed6e13c64b4fd1c" timeStamp:@"1397527777" sign:@"582282D72DD2B03AD892830965F428CB16E7A256" respBlock:^(NSInteger responseCode, NSString *responseMsg) {
+        NSLog(@"errCode = %zd,errStr = %@",responseCode,responseMsg);
+    }];
     
 }
 - (IBAction)UnionPayButtonAction:(id)sender {

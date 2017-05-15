@@ -8,6 +8,10 @@
 
 #import "SAPlatformPayManager.h"
 
+@interface SAPlatformPayManager()<WXApiDelegate>
+
+@end
+
 @implementation SAPlatformPayManager
 
 + (SAPlatformPayManager *)sharePayManager {
@@ -136,21 +140,22 @@
 #pragma mark -------
 #pragma mark -------  微信支付
 
+
 + (BOOL)isWXAppInstalled
 {
     return [WXApi isWXAppInstalled];
 }
-+ (BOOL)wechatRegisterAppWithAppId:(NSString *)appId description:(NSString *)description;
++ (BOOL)WXPayRegisterAppWithAppId:(NSString *)appId description:(NSString *)description
 {
-    return [WXApi registerApp:appId withDescription:description];
+    return [WXApi registerApp:appId];
 }
-+ (BOOL)wechatHandleOpenURL:(NSURL *)url
++ (BOOL)WXPayHandleOpenURL:(NSURL *)url
 {
     return [WXApi handleOpenURL:url delegate:[SAPlatformPayManager sharePayManager]];
 }
-- (void)weixinPayWithAppId:(NSString *)appId partnerId:(NSString *)partnerId prepayId:(NSString *)prepayId package:(NSString *)package nonceStr:(NSString *)nonceStr timeStamp:(NSString *)timeStamp sign:(NSString *)sign respBlock:(SAPayManagerResponseBlock)block
+- (void)WXPayWithAppId:(NSString *)appId partnerId:(NSString *)partnerId prepayId:(NSString *)prepayId package:(NSString *)package nonceStr:(NSString *)nonceStr timeStamp:(NSString *)timeStamp sign:(NSString *)sign respBlock:(SAPayManagerResponseBlock)block
 {     
-    self.wechatRespBlock = block;
+    self.WXPayResponseBlock = block;
     
     if([WXApi isWXAppInstalled])
     {
@@ -166,9 +171,9 @@
     }
     else
     {
-        if(self.wechatRespBlock)
+        if(self.WXPayResponseBlock)
         {
-            self.wechatRespBlock(-3, @"未安装微信");
+            self.WXPayResponseBlock(-3, @"未安装微信");
         }
     }
 }
@@ -182,9 +187,9 @@
         {
             case 0:
             {
-                if(self.wechatRespBlock)
+                if(self.WXPayResponseBlock)
                 {
-                    self.wechatRespBlock(0, @"支付成功");
+                    self.WXPayResponseBlock(0, @"支付成功");
                 }
                 
                 NSLog(@"支付成功");
@@ -192,9 +197,9 @@
             }
             case -1:
             {
-                if(self.wechatRespBlock)
+                if(self.WXPayResponseBlock)
                 {
-                    self.wechatRespBlock(-1, @"支付失败");
+                    self.WXPayResponseBlock(-1, @"支付失败");
                 }
                 
                 NSLog(@"支付失败");
@@ -202,9 +207,9 @@
             }
             case -2:
             {
-                if(self.wechatRespBlock)
+                if(self.WXPayResponseBlock)
                 {
-                    self.wechatRespBlock(-2, @"支付取消");
+                    self.WXPayResponseBlock(-2, @"支付取消");
                 }
                 
                 NSLog(@"支付取消");
@@ -213,9 +218,9 @@
                 
             default:
             {
-                if(self.wechatRespBlock)
+                if(self.WXPayResponseBlock)
                 {
-                    self.wechatRespBlock(-99, @"未知错误");
+                    self.WXPayResponseBlock(-99, @"未知错误");
                 }
             }
                 break;

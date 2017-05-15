@@ -19,6 +19,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    
+    //注册微信appid 这里需要更换你申请的微信appId
+    BOOL isRegister = [SAPlatformPayManager WXPayRegisterAppWithAppId:@"wxb4ba3c02aa476ea1" description:@"description"];
+    
+    
     return YES;
 }
 
@@ -55,7 +61,7 @@
 {
     if([url.scheme hasPrefix:@"wx"])//微信
     {
-        //return [SAPlatformPayManager wechatHandleOpenURL:url];
+        return [SAPlatformPayManager WXPayHandleOpenURL:url];
     }
     else if([url.scheme hasPrefix:@"UnionPay"])//银联
     {
@@ -74,7 +80,7 @@
 {
     if([url.scheme hasPrefix:@"wx"])//微信
     {
-        //return [SAPlatformPayManager wechatHandleOpenURL:url];
+        return [SAPlatformPayManager WXPayHandleOpenURL:url];
     }
     else if([url.scheme hasPrefix:@"UnionPay"])//银联
     {
