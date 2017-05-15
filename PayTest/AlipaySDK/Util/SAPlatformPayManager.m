@@ -147,7 +147,7 @@
 }
 + (BOOL)WXPayRegisterAppWithAppId:(NSString *)appId description:(NSString *)description
 {
-    return [WXApi registerApp:appId];
+    return [WXApi registerApp:appId withDescription:description];
 }
 + (BOOL)WXPayHandleOpenURL:(NSURL *)url
 {
@@ -228,7 +228,57 @@
     }
 }
 
+#pragma mark -------
+#pragma mark -------  银联支付
 
++ (BOOL)UPPayHandleOpenURL:(NSURL*)url {
+    [[UPPaymentControl defaultControl] handlePaymentResult:url completeBlock:^(NSString *code, NSDictionary *data) {
+        
+        SAPlatformPayManager *payManager = [SAPlatformPayManager sharePayManager];
+        
+        if([code isEqualToString:@"success"])
+        {
+            if(payManager.UPPayResponseBlock)
+            {
+                payManager.UPPayResponseBlock(0, @"支付成功");
+            }
+            
+        }
+        else if([code isEqualToString:@"fail"])
+        {
+            if(payManager.UPPayResponseBlock)
+            {
+                payManager.UPPayResponseBlock(-1, @"支付失败");
+            }
+        }
+        else if([code isEqualToString:@"cancel"])
+        {
+            if(payManager.UPPayResponseBlock)
+            {
+                payManager.UPPayResponseBlock(-2, @"支付取消");
+            }
+        }
+        else
+        {
+            if(payManager.UPPayResponseBlock)
+            {
+                payManager.UPPayResponseBlock(-99, @"未知错误");
+            }
+        }
+        
+    }];
+    
+    return YES;
 
+}
+
+- (void)UPPayWithSerialNo:(NSString *)serialNo
+           viewController:(id)viewController
+            responseBlock:(SAPayManagerResponseBlock)block {
+    
+    self.UPPayResponseBlock = block;
+    //fromScheme是商户自定义协议  mode 是接入模式 "00" 表示线上环境"01"表示测试环境
+    [[UPPaymentControl defaultControl] startPay:serialNo fromScheme:@"com.zhangjiong.payTest.UPPay.scheme" mode:@"00" viewController:viewController];
+}
 
 @end

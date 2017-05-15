@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AlipaySDK/AlipaySDK.h>
 #import "WXApi.h"
+#import "UPPaymentControl.h"
 
 typedef void(^SAPayManagerResponseBlock)(NSInteger responseCode, NSString *responseMsg);
 
@@ -48,7 +49,7 @@ typedef void(^SAPayManagerResponseBlock)(NSInteger responseCode, NSString *respo
 
 
 
-/***************支付宝*****************/
+//***************支付宝*****************//
 
 /*
  支付宝支付结果回调
@@ -70,7 +71,7 @@ typedef void(^SAPayManagerResponseBlock)(NSInteger responseCode, NSString *respo
 
 
 
-/***************微信*******************/
+//***************微信*******************//
 
 @property (nonatomic, strong)SAPayManagerResponseBlock WXPayResponseBlock;
 
@@ -91,18 +92,45 @@ typedef void(^SAPayManagerResponseBlock)(NSInteger responseCode, NSString *respo
 
 
 /**
- 调起微信支付
+ 发起微信支付
 
- @param appId <#appId description#>
- @param partnerId <#partnerId description#>
- @param prepayId <#prepayId description#>
- @param package <#package description#>
- @param nonceStr <#nonceStr description#>
- @param timeStamp <#timeStamp description#>
- @param sign <#sign description#>
+ @param appId 微信开放平台审核通过的应用APPID
+ @param partnerId 微信支付分配的商户号
+ @param prepayId 微信生成的预支付回话标识，该值有效期为2小时
+ @param package 暂填写固定值Sign=WXPay
+ @param nonceStr 随机字符串，不长于32位。推荐随机数生成算法
+ @param timeStamp 时间戳，请见接口规则-参数规定
+ @param sign 签名，详见签名生成算法
  @param block 支付结果回调
  */
 - (void)WXPayWithAppId:(NSString *)appId partnerId:(NSString *)partnerId prepayId:(NSString *)prepayId package:(NSString *)package nonceStr:(NSString *)nonceStr timeStamp:(NSString *)timeStamp sign:(NSString *)sign respBlock:(SAPayManagerResponseBlock)block;
 
+
+
+
+//***************银联*****************//
+
+/*
+ 银联支付结果回调
+ */
+@property (nonatomic, strong)SAPayManagerResponseBlock UPPayResponseBlock;
+
+/*
+ 处理银联通过URL启动App时传递回来的数据
+ */
++ (BOOL)UPPayHandleOpenURL:(NSURL*)url;
+
+
+
+/**
+ 发起银联支付
+
+ @param serialNo 是交易流水号
+ @param viewController 发起支付的控制器
+ @param block 支付结果回调
+ */
+- (void)UPPayWithSerialNo:(NSString *)serialNo
+              viewController:(id)viewController
+                   responseBlock:(SAPayManagerResponseBlock)block;
 
 @end

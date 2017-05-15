@@ -22,7 +22,7 @@
     
     
     //注册微信appid 这里需要更换你申请的微信appId
-    BOOL isRegister = [SAPlatformPayManager WXPayRegisterAppWithAppId:@"wxb4ba3c02aa476ea1" description:@"description"];
+    [SAPlatformPayManager WXPayRegisterAppWithAppId:@"wxb4ba3c02aa476ea1" description:@"description"];
     
     
     return YES;
