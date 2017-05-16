@@ -198,6 +198,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB6733DD1EC9845B00603C1B /* libPaymentControl.a in Frameworks */,
 				AB6733BD1EC94F9D00603C1B /* libsqlite3.tbd in Frameworks */,
 				AB6733BB1EC94F7B00603C1B /* Security.framework in Frameworks */,
 				AB6733E31EC9849200603C1B /* libWeChatSDK.a in Frameworks */,
@@ -212,7 +213,6 @@
 				AB8443421EC43FB300535669 /* SystemConfiguration.framework in Frameworks */,
 				AB8443401EC43FA700535669 /* libz.tbd in Frameworks */,
 				AB84433E1EC43F9A00535669 /* libc++.tbd in Frameworks */,
-				AB6733DD1EC9845B00603C1B /* libPaymentControl.a in Frameworks */,
 				AB8443341EC43D0100535669 /* libcrypto.a in Frameworks */,
 				AB8443331EC43D0100535669 /* AlipaySDK.framework in Frameworks */,
 				AB8443351EC43D0100535669 /* libssl.a in Frameworks */,
