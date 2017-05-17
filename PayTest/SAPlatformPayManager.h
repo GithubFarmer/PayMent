@@ -133,4 +133,11 @@ typedef void(^SAPayManagerResponseBlock)(NSInteger responseCode, NSString *respo
               viewController:(id)viewController
                    responseBlock:(SAPayManagerResponseBlock)block;
 
+
+
+//***************Apple Pay*****************//
+
+
+
+
 @end

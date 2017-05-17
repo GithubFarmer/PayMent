@@ -82,9 +82,9 @@
     {
         return [SAPlatformPayManager WXPayHandleOpenURL:url];
     }
-    else if([url.scheme hasPrefix:@"UnionPay"])//银联
+    else if([url.scheme hasPrefix:@"uppay"])//银联
     {
-        //return [SAPlatformPayManager unionHandleOpenURL:url];
+        return [SAPlatformPayManager UPPayHandleOpenURL:url];
     }
     else if([url.scheme hasPrefix:@"safepay"])//支付宝
     {
