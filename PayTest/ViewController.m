@@ -20,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    
 }
 
 //支付宝支付
@@ -52,7 +54,8 @@
 //银联支付
 - (IBAction)UnionPayButtonAction:(id)sender {
     //向服务端发起请求获取SerialNo
-    [[SAPlatformPayManager sharePayManager] UPPayWithSerialNo:@"125462456325562456" viewController:self responseBlock:^(NSInteger responseCode, NSString *responseMsg) {
+    
+    [[SAPlatformPayManager sharePayManager] UPPayWithSerialNo:@"123467562583256" fromScheme:@"com.zhangjiong.payTest.UPPay.scheme" viewController:self responseBlock:^(NSInteger responseCode, NSString *responseMsg) {
         NSLog(@"errCode = %zd,errStr = %@",responseCode,responseMsg);
     }];
 }

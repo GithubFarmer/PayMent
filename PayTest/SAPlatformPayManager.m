@@ -273,12 +273,33 @@
 }
 
 - (void)UPPayWithSerialNo:(NSString *)serialNo
+               fromScheme:(NSString *)scheme
            viewController:(id)viewController
             responseBlock:(SAPayManagerResponseBlock)block {
     
     self.UPPayResponseBlock = block;
     //fromScheme是商户自定义协议  mode 是接入模式 "00" 表示线上环境"01"表示测试环境
     [[UPPaymentControl defaultControl] startPay:serialNo fromScheme:@"com.zhangjiong.payTest.UPPay.scheme" mode:@"00" viewController:viewController];
+}
+
+
+
++ (BOOL)handlePayOpenUrl:(NSURL *)url {
+    
+    if([url.scheme hasPrefix:@"wx"])//微信
+    {
+        return [self WXPayHandleOpenURL:url];
+    }
+    else if([url.host isEqualToString:@"uppayresult"])//银联
+    {
+        return [self UPPayHandleOpenURL:url];
+    }
+    else if([url.host isEqualToString:@"safepay"])//支付宝
+    {
+        return [self alipayHandleOpenURL:url];
+    }
+
+    return YES;
 }
 
 @end

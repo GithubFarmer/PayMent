@@ -59,18 +59,7 @@
 //iOS9之前
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    if([url.scheme hasPrefix:@"wx"])//微信
-    {
-        return [SAPlatformPayManager WXPayHandleOpenURL:url];
-    }
-    else if([url.scheme hasPrefix:@"UnionPay"])//银联
-    {
-        return [SAPlatformPayManager UPPayHandleOpenURL:url];
-    }
-    else if([url.scheme hasPrefix:@"safepay"])//支付宝
-    {
-        return [SAPlatformPayManager alipayHandleOpenURL:url];
-    }
+    [SAPlatformPayManager handlePayOpenUrl:url];
     
     return YES;
 }
@@ -78,18 +67,8 @@
 //iOS9之后
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
 {
-    if([url.scheme hasPrefix:@"wx"])//微信
-    {
-        return [SAPlatformPayManager WXPayHandleOpenURL:url];
-    }
-    else if([url.scheme hasPrefix:@"uppay"])//银联
-    {
-        return [SAPlatformPayManager UPPayHandleOpenURL:url];
-    }
-    else if([url.scheme hasPrefix:@"safepay"])//支付宝
-    {
-        return [SAPlatformPayManager alipayHandleOpenURL:url];
-    }
+        
+    [SAPlatformPayManager handlePayOpenUrl:url];
     
     return YES;
 }

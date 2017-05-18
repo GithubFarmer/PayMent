@@ -59,7 +59,7 @@ typedef void(^SAPayManagerResponseBlock)(NSInteger responseCode, NSString *respo
 /*
  处理支付宝通过URL启动App时传递回来的数据 AppDelegate
  */
-+ (BOOL)alipayHandleOpenURL:(NSURL *)url;
+- (BOOL)alipayHandleOpenURL:(NSURL *)url;
 
 /*
  发起支付宝支付
@@ -88,7 +88,7 @@ typedef void(^SAPayManagerResponseBlock)(NSInteger responseCode, NSString *respo
 /*
  处理微信通过URL启动App时传递回来的数据 AppDelegate
  */
-+ (BOOL)WXPayHandleOpenURL:(NSURL *)url;
+- (BOOL)WXPayHandleOpenURL:(NSURL *)url;
 
 
 /**
@@ -118,7 +118,7 @@ typedef void(^SAPayManagerResponseBlock)(NSInteger responseCode, NSString *respo
 /*
  处理银联通过URL启动App时传递回来的数据
  */
-+ (BOOL)UPPayHandleOpenURL:(NSURL*)url;
+- (BOOL)UPPayHandleOpenURL:(NSURL*)url;
 
 
 
@@ -130,6 +130,7 @@ typedef void(^SAPayManagerResponseBlock)(NSInteger responseCode, NSString *respo
  @param block 支付结果回调
  */
 - (void)UPPayWithSerialNo:(NSString *)serialNo
+               fromScheme:(NSString *)scheme
               viewController:(id)viewController
                    responseBlock:(SAPayManagerResponseBlock)block;
 
@@ -138,6 +139,12 @@ typedef void(^SAPayManagerResponseBlock)(NSInteger responseCode, NSString *respo
 //***************Apple Pay*****************//
 
 
+
+
+
+
+
++ (BOOL)handlePayOpenUrl:(NSURL *)url;
 
 
 @end
