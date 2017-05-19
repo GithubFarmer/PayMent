@@ -59,7 +59,7 @@ typedef void(^SAPayManagerResponseBlock)(NSInteger responseCode, NSString *respo
 /*
  处理支付宝通过URL启动App时传递回来的数据 AppDelegate
  */
-- (BOOL)alipayHandleOpenURL:(NSURL *)url;
++ (BOOL)alipayHandleOpenURL:(NSURL *)url;
 
 /*
  发起支付宝支付
@@ -88,7 +88,7 @@ typedef void(^SAPayManagerResponseBlock)(NSInteger responseCode, NSString *respo
 /*
  处理微信通过URL启动App时传递回来的数据 AppDelegate
  */
-- (BOOL)WXPayHandleOpenURL:(NSURL *)url;
++ (BOOL)WXPayHandleOpenURL:(NSURL *)url;
 
 
 /**

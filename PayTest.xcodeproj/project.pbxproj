@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB66D6361ECE7B1A0069EB8B /* SAPlatformPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AB66D6351ECE7B1A0069EB8B /* SAPlatformPayManager.m */; };
 		AB6733BB1EC94F7B00603C1B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6733BA1EC94F7B00603C1B /* Security.framework */; };
 		AB6733BD1EC94F9D00603C1B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6733BC1EC94F9D00603C1B /* libsqlite3.tbd */; };
 		AB6733DD1EC9845B00603C1B /* libPaymentControl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6733DB1EC9845B00603C1B /* libPaymentControl.a */; };
 		AB6733E31EC9849200603C1B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6733DF1EC9849200603C1B /* libWeChatSDK.a */; };
-		AB6735541EC9A20D00603C1B /* SAPlatformPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6735531EC9A20D00603C1B /* SAPlatformPayManager.m */; };
 		AB8442381EC3F9B200535669 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8442371EC3F9B200535669 /* main.m */; };
 		AB84423B1EC3F9B200535669 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB84423A1EC3F9B200535669 /* AppDelegate.m */; };
 		AB84423E1EC3F9B200535669 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB84423D1EC3F9B200535669 /* ViewController.m */; };
@@ -61,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB66D6341ECE7B1A0069EB8B /* SAPlatformPayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPlatformPayManager.h; sourceTree = "<group>"; };
+		AB66D6351ECE7B1A0069EB8B /* SAPlatformPayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPlatformPayManager.m; sourceTree = "<group>"; };
 		AB6733BA1EC94F7B00603C1B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		AB6733BC1EC94F9D00603C1B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		AB6733DB1EC9845B00603C1B /* libPaymentControl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPaymentControl.a; sourceTree = "<group>"; };
@@ -69,8 +71,6 @@
 		AB6733E01EC9849200603C1B /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		AB6733E11EC9849200603C1B /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		AB6733E21EC9849200603C1B /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
-		AB6735521EC9A20D00603C1B /* SAPlatformPayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAPlatformPayManager.h; sourceTree = "<group>"; };
-		AB6735531EC9A20D00603C1B /* SAPlatformPayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAPlatformPayManager.m; sourceTree = "<group>"; };
 		AB8442331EC3F9B200535669 /* PayTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PayTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8442371EC3F9B200535669 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AB8442391EC3F9B200535669 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -236,6 +236,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB66D6331ECE7B1A0069EB8B /* SAPlatformPayManager */ = {
+			isa = PBXGroup;
+			children = (
+				AB66D6341ECE7B1A0069EB8B /* SAPlatformPayManager.h */,
+				AB66D6351ECE7B1A0069EB8B /* SAPlatformPayManager.m */,
+			);
+			path = SAPlatformPayManager;
+			sourceTree = "<group>";
+		};
 		AB6733DA1EC9845B00603C1B /* UPPaySDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,12 +292,11 @@
 				AB6733DE1EC9849200603C1B /* WeiXinPaySDK */,
 				AB6733DA1EC9845B00603C1B /* UPPaySDK */,
 				AB8442D31EC43D0100535669 /* AlipaySDK */,
+				AB66D6331ECE7B1A0069EB8B /* SAPlatformPayManager */,
 				AB8442391EC3F9B200535669 /* AppDelegate.h */,
 				AB84423A1EC3F9B200535669 /* AppDelegate.m */,
 				AB84423C1EC3F9B200535669 /* ViewController.h */,
 				AB84423D1EC3F9B200535669 /* ViewController.m */,
-				AB6735521EC9A20D00603C1B /* SAPlatformPayManager.h */,
-				AB6735531EC9A20D00603C1B /* SAPlatformPayManager.m */,
 				AB8442361EC3F9B200535669 /* Supporting Files */,
 			);
 			path = PayTest;
@@ -604,7 +612,7 @@
 				AB84433B1EC43D0100535669 /* RSADataVerifier.m in Sources */,
 				AB8443361EC43D0100535669 /* Order.m in Sources */,
 				AB8443391EC43D0100535669 /* openssl_wrapper.m in Sources */,
-				AB6735541EC9A20D00603C1B /* SAPlatformPayManager.m in Sources */,
+				AB66D6361ECE7B1A0069EB8B /* SAPlatformPayManager.m in Sources */,
 				AB8442381EC3F9B200535669 /* main.m in Sources */,
 				AB8443381EC43D0100535669 /* NSDataEx.m in Sources */,
 			);
@@ -764,7 +772,7 @@
 					"$(PROJECT_DIR)/PayTest/AlipaySDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/michael.zhang/Desktop/PayTest/PayTest/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/PayTest/PrefixHeader.pch";
 				INFOPLIST_FILE = PayTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -796,7 +804,7 @@
 					"$(PROJECT_DIR)/PayTest/AlipaySDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/michael.zhang/Desktop/PayTest/PayTest/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/PayTest/PrefixHeader.pch";
 				INFOPLIST_FILE = PayTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
